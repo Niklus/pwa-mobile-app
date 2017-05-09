@@ -1,8 +1,10 @@
+/*Style the detail portion with mdc coponents*/
+
+
 .demo-body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background: linen;
 }
 
 /* A simple menu button. */
@@ -37,4 +39,22 @@ a{
 .grid-cell{
   padding: 15px;
   background: white;
+}
+
+
+video{
+  max-width: 100%;
+  height: auto;
+} 
+
+.element-image__caption{
+    display: none;
+}
+
+.element-image__credit{
+    display: none;
+}
+
+#articleBody{
+    text-align: justify;
 }

@@ -1,19 +1,4 @@
 <!DOCTYPE html>
-<!--
-  Copyright 2016 Google Inc. All rights reserved.
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      https://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License
--->
 <html>
   <head>
     
@@ -81,26 +66,26 @@
         </header>
         <nav class="mdc-temporary-drawer__content mdc-list-group">
 
-          <div id="icon-with-text-demo" class="mdc-list">
-            <a class="mdc-list-item" href="#/world">
+          <div class="mdc-list">
+            <a class="section mdc-list-item" href="#/world">
               World
             </a>
-            <a class="mdc-list-item" href="#/culture">
+            <a class="section mdc-list-item" href="#/culture">
               Culture
             </a>
-            <a class="mdc-list-item" href="#/politics">
+            <a class="section mdc-list-item" href="#/politics">
               Politics
             </a>
-            <a class="mdc-list-item" href="#/business">
+            <a class="section mdc-list-item" href="#/business">
               Business
             </a>
-             <a class="mdc-list-item" href="#/sport">
+             <a class="section mdc-list-item" href="#/sport">
               Sports
             </a>
-            <a class="mdc-list-item" href="#/fashion">
+            <a class="section mdc-list-item" href="#/fashion">
               Fashion
             </a>
-            <a class="mdc-list-item" href="#/music">
+            <a class="section mdc-list-item" href="#/music">
               Music
             </a>  
           </div>
@@ -153,10 +138,14 @@
     <main class="mdc-toolbar-fixed-adjust">
       
       <h1 id="section" class="mdc-typography--display1"></h1>
-
+      
       <div id="grid" class="mdc-layout-grid">
         <!--PUT A LOADER SIGN HERE-->
       </div>
+    
+      <div id='detail'>  
+      </div>
+        
     </main>
 
     <script src="node_modules/material-components-web/dist/material-components-web.min.js"></script>    
@@ -176,14 +165,21 @@
         //console.log('Received MDCTemporaryDrawer:close');
       });
 
+      document.querySelector('.demo-menu').addEventListener('click', function() {
+        
+      });
+      
+
       /*
       The drawer needs to pull back when an item is clicked: FIX!
       */
     </script>
-
+   
     <script src="libs/idb.js"></script>
+    <script src="/libs/purify.min.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/app.js"></script>
+  
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
     <script>

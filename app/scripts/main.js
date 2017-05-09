@@ -21,10 +21,9 @@ window.addEventListener('offline', function(e) {
 
 // check if the user is connected
 if (navigator.onLine) {
-    console.log("You are online");
+  console.log("You are online");
 } else {
-    console.log("You are offline");
-    document.querySelector(".arrivals-list").classList.add('loading')
+  console.log("You are offline");
 }
 
 
