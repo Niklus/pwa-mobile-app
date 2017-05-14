@@ -52,9 +52,14 @@ video{
 }
 
 .element-image__credit{
-    display: none;
+  display: none;
 }
 
 #articleBody{
-    text-align: justify;
+  text-align: justify;
+}
+
+#sectionTitle{
+  margin-top: 0;
+  margin-right: 30%;
 }

@@ -1,15 +1,36 @@
 // Use ES6 syntax except Class
 // Separate to different modules
 // Use gulp
-var app = (function() {
+const app = (function() {
   
   'use strict';
-  
-  // Globals
-  let grid = document.getElementById("grid");
-  let detail = document.getElementById("detail");
+
+  //Globals
   const endpoint = 'https://content.guardianapis.com/';
   const key = 'a0f2219a-e62d-4c78-b0ac-f4f8717d3580';
+  let scrollPos = 0;
+  
+  // Dom
+  const grid = document.getElementById("grid");
+  const detail = document.getElementById("detail");
+  const update = document.getElementById("update");
+  const arrow = document.getElementById("arrow");
+  const sectionTitle = document.getElementById("sectionTitle");
+  const sections = document.querySelectorAll(".section");
+  
+  arrow.addEventListener('click',() => window.history.back())
+  update.addEventListener('click', updateSection)
+
+  sections.forEach((section)=>{
+    section.addEventListener('click',() => scrollPos = 0)
+  });
+
+
+  // enable manual scrolling
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
 
   /////////////DATABASE//////////////////////////
   if (!('indexedDB' in window)) {
@@ -17,12 +38,13 @@ var app = (function() {
     return;
   }
   // Use the switch for better versioning
-  var dbPromise = idb.open('articles-db', 1, function(upgradeDb) {
+  const dbPromise = idb.open('articles-db', 2, function(upgradeDb) {
     if (!upgradeDb.objectStoreNames.contains('articles')) {
       console.log('Creating articles object store');
-      var store = upgradeDb.createObjectStore('articles', {keyPath: 'id'});
-      console.log('Creating a section index');
+      const store = upgradeDb.createObjectStore('articles', {keyPath: 'id'});
+      console.log('Creating indexes');
       store.createIndex('section', 'sectionId', {unique: false});  
+      store.createIndex('timeStamp', 'timeStamp', {unique: false});
       //create a timestamp index here
     }
   });
@@ -55,12 +77,12 @@ var app = (function() {
     
     section = section.length === 0 ? 'world' : section;
 
-    var range = IDBKeyRange.only(section);
+    const range = IDBKeyRange.only(section);
 
     dbPromise.then(function(db) {
-      var tx = db.transaction('articles', 'readonly');
-      var store = tx.objectStore('articles');
-      var index = store.index('section');
+      const tx = db.transaction('articles', 'readonly');
+      const store = tx.objectStore('articles');
+      const index = store.index('section');
       return index.getAll(range);
     }).then(function(items) {    
       items.length === 0 ? getData(section) : render(items, true);
@@ -93,20 +115,27 @@ var app = (function() {
 
   function render(data, fromDb){  
 
-    var str = '';
+    let str = '';
 
     data.forEach(function(el){ 
-      str += `<div class="grid-cell mdc-elevation--z1 mdc-layout-grid__cell">
+      str += `
+      <div class="grid-cell mdc-elevation--z1 mdc-layout-grid__cell">
         <img src=${el.fields.thumbnail} >
         <a href='#/${el.id}'>
         <p class="mdc-typography--body1"> ${el.webTitle} </p>
-        </a></div>`;
+        </a>
+      </div>`;
     });
-    
+
     grid.innerHTML = str;
     detail.innerHTML ='';
-    window.scroll(0, 0);
+    arrow.style = "display:none"
+    update.style = "display:revert"
+
+    sectionTitle.innerHTML = `${data[0].sectionId.toUpperCase()}`;
     
+    window.scroll(0, scrollPos);
+   
     if(fromDb){
       console.log('from db')     
     }else{
@@ -117,9 +146,10 @@ var app = (function() {
 
   function addToDb(items){
     dbPromise.then(function(db) {
-      var tx = db.transaction('articles', 'readwrite');
-      var store = tx.objectStore('articles');
+      const tx = db.transaction('articles', 'readwrite');
+      const store = tx.objectStore('articles');
       items.forEach(function(item){
+        item.timeStamp = Date.now();
         store.put(item); // put vs add : use put --no errors
       })
       return tx.complete;
@@ -128,7 +158,7 @@ var app = (function() {
     });
   }
 
-  function logError(){
+  function logError(error){
     console.log('Looks like there was a problem: \n', error);
   }
 
@@ -137,46 +167,52 @@ var app = (function() {
 
   function getDetail(id){
     dbPromise.then(function(db) {
-      var tx = db.transaction('articles', 'readonly');
-      var store = tx.objectStore('articles');
+      const tx = db.transaction('articles', 'readonly');
+      const store = tx.objectStore('articles');
       return store.get(id);
-    }).then(renderDetail);
+    }).then((item)=>{
+      console.log('from db');
+      renderDetail(item);
+    });
   }
 
 
   function renderDetail(item){
-
-    /*
-      if(!item){
-        fetchDetail(getId(window.location.hash))
-      }
-    */
+    
+    if(!item){
+      fetchDetail(getId(window.location.hash))
+      return;
+    }
+    
 
     sanitize(item.fields.body)
     .then(function(body){
       
-      let str  = ` <img src=${item.fields.thumbnail} >
+      let str  = `<img src=${item.fields.thumbnail} >
       <h1 class="mdc-typography--display1">${item.webTitle}</h1>
       <div>${body}</div>`;
-
+      
+      scrollPos = window.scrollY;
       grid.innerHTML = '';
       detail.innerHTML = str;
-      window.scroll(0, 0);
+      arrow.style = "display:revert"
+      update.style = "display:none"
     }).then(ShowControls); // A hack: sanitizer not preserving video controll attributes
+
+    
   }
 
   function fetchDetail(id){
+
     // Rare Case: old bookmarked url
     // if no item, that means the old url and data misses from the database
     // use the id to fetch data online if (navigator.online) and render and save
-    /*
+
     getJson(id)
     .then((res) => res.json())
-    .then((res)=>res.response.content))
+    .then((res)=>res.response.content)
     .then(renderDetail)
-    //Remember to store in array b4 db
-    .then(storetodB)
-    */
+    // Could then store in db
   }
 
  
@@ -194,7 +230,7 @@ var app = (function() {
 
   // Show Controls
   function ShowControls(){
-    var videos = document.querySelectorAll('video');
+    const videos = document.querySelectorAll('video');
     if(videos.length > 0){
       videos.forEach(function(video){
         video.controls = true;
@@ -205,14 +241,19 @@ var app = (function() {
    
   ///////UPDATING////////////////////
   function updateSection(){
-    //if network, delete section, getSection
-    if(navigator.online){
+    
+    if (window.navigator.onLine) { // && timeStamp - currentTime > 30 min
       
-    }
-  }
+      console.log("updating section"); //Show snackbar
 
-  function updateAllSections(){
-    //if network, [sections].forEach(delete or clearAll), [sections].forEach(getSection)
+      let section = getId(window.location.hash);
+      section = section.length === 0 ? 'world' : section;
+
+      //Check db size, clear e.t.c
+      //getData(section);
+    } else {
+      console.log("You are offline");
+    }
   }
 
   function checkTimeStamp() {}

@@ -20,7 +20,7 @@ window.addEventListener('offline', function(e) {
 }, false);
 
 // check if the user is connected
-if (navigator.onLine) {
+if (window.navigator.onLine) {
   console.log("You are online");
 } else {
   console.log("You are offline");

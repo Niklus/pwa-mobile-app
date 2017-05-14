@@ -42,11 +42,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="node_modules/material-components-web/dist/material-components-web.min.css">
-
-    <style>
-    
-
-    </style>
   </head>
   <body class="mdc-typography demo-body">
     <div class="mdc-toolbar mdc-toolbar--fixed">
@@ -54,6 +49,27 @@
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
           <button class="demo-menu material-icons">menu</button>
         </section>
+
+         <p id="sectionTitle"></p>
+
+        <!--Update icon: put in external file-->
+        <svg id="update" fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <defs>
+              <path d="M0 0h24v24H0V0z" id="a"/>
+          </defs>
+          <clipPath id="b">
+              <use overflow="visible" xlink:href="#a"/>
+          </clipPath>
+          <path clip-path="url(#b)" d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1-2.73 2.71-2.73 7.08 0 9.79 2.73 2.71 7.15 2.71 9.88 0C18.32 15.65 19 14.08 19 12.1h2c0 1.98-.88 4.55-2.64 6.29-3.51 3.48-9.21 3.48-12.72 0-3.5-3.47-3.53-9.11-.02-12.58 3.51-3.47 9.14-3.47 12.65 0L21 3v7.12zM12.5 8v4.25l3.5 2.08-.72 1.21L11 13V8h1.5z"/>
+        </svg>
+        
+        <!--Arrow_back: put in external file-->
+        <svg id="arrow" fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+
+
       </div>
     </div>
 
@@ -91,18 +107,9 @@
           </div>
 
           <hr class="mdc-list-divider">
-           
-          <div id="updateSection" class="mdc-list-item">
-            Update Section
-          </div>
-          <div id="updateAll" class="mdc-list-item">
-            Update All
-          </div>
-
-          <hr class="mdc-list-divider">
           
           <div id="icon-with-text-demo" class="mdc-list">
-            <a class="mdc-list-item mdc-temporary-drawer--selected" href="#">
+            <a class="mdc-list-item mdc-temporary-drawer--selected">
               <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">home</i>Home
             </a>
             <a class="mdc-list-item mdc-temporary-drawer--selected" href="#">
@@ -137,8 +144,6 @@
     </aside>
     <main class="mdc-toolbar-fixed-adjust">
       
-      <h1 id="section" class="mdc-typography--display1"></h1>
-      
       <div id="grid" class="mdc-layout-grid">
         <!--PUT A LOADER SIGN HERE-->
       </div>
@@ -164,11 +169,6 @@
       drawerEl.addEventListener('MDCTemporaryDrawer:close', function() {
         //console.log('Received MDCTemporaryDrawer:close');
       });
-
-      document.querySelector('.demo-menu').addEventListener('click', function() {
-        
-      });
-      
 
       /*
       The drawer needs to pull back when an item is clicked: FIX!
