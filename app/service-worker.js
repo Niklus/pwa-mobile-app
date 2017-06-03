@@ -2,11 +2,12 @@
   'use strict';
 
   // Define the files to cache: Application Shell
-  // You have a thick client: cache agressively !!!
+  // cache agressively !
+  // init the db on activate: use the switch method
+
 	var filesToCache = [
 		'.',
 		'index.html',
-		'pages/detail.html',
 		'pages/offline.html',
 		'pages/404.html',
 		'scripts/app.js',
@@ -20,20 +21,13 @@
 		"node_modules/material-components-web/dist/material-components-web.min.css", 
 		"node_modules/material-components-web/dist/material-components-web.min.js" //Extract these last four later and put them in libs
 	];
-
-
-
-	/*  
-	  Here we Leave out some resources, that will be added 
-	  to the cache as they are requested. What is important to cache
-	  upfront is dependent on your app.
-	*/
+	
 
   
-  // Define the cahce name
+  	// Define the cahce name
 	var staticCacheName = 'pages-cache-v2';
   
-  // Install service worker and cache the static assets
+  	// Install service worker and cache the static assets
 	self.addEventListener('install', function(event) {
 	  
 	  //console.log('Attempting to install service worker and cache static assets');
@@ -46,16 +40,17 @@
 	      return cache.addAll(filesToCache); 
 	    })
 	  );
-	  /* 
-		We wrap this in event.waitUntil to extend the lifetime of the event 
-		until all of the files are added to the cache and addAll resolves successfully.
-	  */
+  	/* 
+	We wrap this in event.waitUntil to extend the lifetime of the event 
+	until all of the files are added to the cache and addAll resolves successfully.
+	*/  
 	});
 
-  /* 
-  	Intercept requests and serve from the cache if available
-  	Using the "cache falling to network" strategy
-  */
+  	/* 
+  		Intercept requests and serve from the cache if available
+  		Using the "cache falling to network" strategy
+  	*/
+  
   self.addEventListener('fetch', function(event) {
     
     event.respondWith(
@@ -95,7 +90,8 @@
   	Delete unused caches
     By Changing the cachename e.g to pages-cache-v3 
     we can delete the old cache
-  */
+   */
+  
 
   self.addEventListener('activate', function(event) {
 	  
@@ -118,10 +114,13 @@
 	    })
 	  );
 	});
+
 	/*
 		We delete old caches in the activate event to make sure that we aren't 
-	  deleting caches before the new service worker has taken over the page. 
+	  	deleting caches before the new service worker has taken over the page. 
 		We create an array of caches that are currently in use and delete all other caches.
 	*/
+	
 
 })();
+
