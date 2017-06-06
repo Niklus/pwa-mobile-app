@@ -1,11 +1,13 @@
+
 'use strict';
+
 import idb from '../libs/idb';
 const dbPromise = idb.open('articles-db');
 
 class List {
 
-  constructor() {
-    
+  constructor(content) {
+    this.content = content;
   }
 
   getSection(section){
@@ -28,8 +30,8 @@ class List {
     this.getJson(section)
     .then(this.readAsJson)
     .then(res => res.response.results)
-    .then(this.render)
-    .then(this.addToDb)
+    .then(items => this.render(items))
+    .then(items => this.addToDb(items))
     .catch(this.logError);
   }
 
@@ -40,7 +42,6 @@ class List {
   }
 
   readAsJson(response) { 
-    
     if (!response.ok) {
       throw Error(response.statusText);
     }
@@ -83,9 +84,8 @@ class List {
     grid.classList.add('mdc-layout-grid');
     grid.innerHTML = str;
 
-    const content = document.getElementById("content");
-    content.innerHTML = '';
-    content.appendChild(grid);
+    this.content.innerHTML = '';
+    this.content.appendChild(grid);
   
     if(fromDb){
       console.log('from db');     

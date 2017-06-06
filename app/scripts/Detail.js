@@ -1,10 +1,13 @@
+
+'use strict';
+
 import idb from '../libs/idb';
-import DOMpurify from '../libs/purify.min.js';
+//import DOMpurify from '../libs/purify.min.js';
 
 class Detail {
 
-  constructor() {
-    this.content = document.getElementById("content");
+  constructor(content) {
+    this.content = content;
   }
    
   getDetail(id){
@@ -14,9 +17,7 @@ class Detail {
       const store = tx.objectStore('articles');
       return store.get(id);
     }).then((item)=>{
-      if(item) {
-        console.log('from db');
-      }
+      item ? console.log('from db') : null
       this.render(item);
     });
   }
@@ -31,20 +32,22 @@ class Detail {
       console.log('getting from network');
       this.fetchDetail(this.getId(window.location.hash));
       return;
+      //Testfor this case by deleting an item and refreshing the detail page.
     }
 
-    this.sanitize(item.fields.body)
-    .then((body) => {
+    //this.sanitize(item.fields.body)
+    //.then((body) => {
       
-      let str  = `
+      this.content.innerHTML = `
         <section class="article demo-typography--section mdc-typography">
           <img src=${item.fields.thumbnail}>
           <h1 class="mdc-typography--headline"">${item.webTitle}</h1>
-          <div class="mdc-typography--body1 mdc-typography--adjust-margin" >${body}</div>
+          <div class="mdc-typography--body1 mdc-typography--adjust-margin" >${item.fields.body}</div>
         </section>`
       ;
-      this.content.innerHTML = str;
-    }).then(this.ShowControls); // A hack: sanitizer not preserving video controll attributes
+    //})
+
+    //.then(this.ShowControls); // A hack: sanitizer not preserving video controll attributes
   }
 
   fetchDetail(id){
@@ -54,13 +57,13 @@ class Detail {
     // use the id to fetch data online if (navigator.online) and render and save
 
     this.getJson(id)
-    .then((res) => res.json())
-    .then((res)=>res.response.content)
-    .then(this.renderDetail);
+    .then(res => res.json())
+    .then(res => res.response.content)
+    .then(content => this.render(content));
     // Could then store in db
   }
 
-  sanitize(html) {
+  /*sanitize(html) {
     return new Promise(function(resolve){
       resolve(
          DOMpurify.sanitize(html, {
@@ -68,7 +71,7 @@ class Detail {
         })
       );
     });
-  }
+  }*/
 
   // Show Controls 
   ShowControls()  {
@@ -88,3 +91,5 @@ class Detail {
 }
 
 export default Detail;
+
+// TODO : write tests! 
