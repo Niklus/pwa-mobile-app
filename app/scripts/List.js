@@ -1,13 +1,12 @@
-
 'use strict';
 
 import idb from '../libs/idb';
-const dbPromise = idb.open('articles-db');
+const dbPromise = idb.open('article-store');
 
 class List {
 
-  constructor(content) {
-    this.content = content;
+  constructor(view) {
+    this.view = view;
   }
 
   getSection(section){
@@ -49,15 +48,11 @@ class List {
   }
 
   render(data, fromDb){  
-
-    let str = '';
     
     // Order from the latest
-    data = data.sort(function(a, b){
-      
+    data = data.sort((a, b) => {
       const dateA = a.webPublicationDate;
       const dateB = b.webPublicationDate;
-      
       if(dateA > dateB) {
         return -1;
       }
@@ -69,24 +64,8 @@ class List {
       return 0;
     });
 
-    data.forEach(function(el){ 
-      str += `
-      <div class="grid-cell mdc-elevation--z1 mdc-layout-grid__cell">
-        <img src=${el.fields.thumbnail} >
-        <a href='#/${el.id}'>
-          <p class="mdc-typography--body1"> ${el.webTitle} </p>
-        </a>
-        <p class="date">${el.webPublicationDate.slice(0,10)}</p>
-      </div>`;
-    });
+    this.view.renderList(data);
 
-    const grid = document.createElement('div');
-    grid.classList.add('mdc-layout-grid');
-    grid.innerHTML = str;
-
-    this.content.innerHTML = '';
-    this.content.appendChild(grid);
-  
     if(fromDb){
       console.log('from db');     
     }else{

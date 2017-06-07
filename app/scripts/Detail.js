@@ -2,17 +2,16 @@
 'use strict';
 
 import idb from '../libs/idb';
-//import DOMpurify from '../libs/purify.min.js';
 
 class Detail {
 
-  constructor(content) {
-    this.content = content;
+  constructor(view) {
+    this.view = view;
   }
    
   getDetail(id){
     
-    idb.open('articles-db').then(function(db) {
+    idb.open('article-store').then(function(db) {
       const tx = db.transaction('articles', 'readonly');
       const store = tx.objectStore('articles');
       return store.get(id);
@@ -35,19 +34,7 @@ class Detail {
       //Testfor this case by deleting an item and refreshing the detail page.
     }
 
-    //this.sanitize(item.fields.body)
-    //.then((body) => {
-      
-      this.content.innerHTML = `
-        <section class="article demo-typography--section mdc-typography">
-          <img src=${item.fields.thumbnail}>
-          <h1 class="mdc-typography--headline"">${item.webTitle}</h1>
-          <div class="mdc-typography--body1 mdc-typography--adjust-margin" >${item.fields.body}</div>
-        </section>`
-      ;
-    //})
-
-    //.then(this.ShowControls); // A hack: sanitizer not preserving video controll attributes
+    this.view.renderDetail(item);
   }
 
   fetchDetail(id){
@@ -61,26 +48,6 @@ class Detail {
     .then(res => res.response.content)
     .then(content => this.render(content));
     // Could then store in db
-  }
-
-  /*sanitize(html) {
-    return new Promise(function(resolve){
-      resolve(
-         DOMpurify.sanitize(html, {
-          FORBID_TAGS: ['figure','figcaption']
-        })
-      );
-    });
-  }*/
-
-  // Show Controls 
-  ShowControls()  {
-    const videos = document.querySelectorAll('video');
-    if(videos.length > 0){
-      videos.forEach(function(video){
-        video.controls = true;
-      });
-    }
   }
 
   getJson(section){
