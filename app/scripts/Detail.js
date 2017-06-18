@@ -11,7 +11,7 @@ class Detail {
    
   getDetail(id){
     
-    idb.open('article-store').then(function(db) {
+    idb.open('articles').then(function(db) {
       const tx = db.transaction('articles', 'readonly');
       const store = tx.objectStore('articles');
       return store.get(id);
@@ -22,7 +22,7 @@ class Detail {
   }
 
   getId(hash){
-    return (hash.replace(/[\/]/, "")).replace(/[#]/, "");
+    return (hash.replace(/[\/]/, "")).replace(/[#]/, ""); // use slice(pont of split)
   }
 
   render(item){

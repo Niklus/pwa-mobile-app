@@ -1,7 +1,7 @@
 'use strict';
 
 import idb from '../libs/idb';
-const dbPromise = idb.open('article-store');
+const dbPromise = idb.open('articles');
 
 class List {
 

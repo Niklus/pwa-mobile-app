@@ -27,7 +27,7 @@ class App {
     
     // Use the switch for better versioning
     
-    return idb.open('article-store', 2, function(upgradeDb) {
+    return idb.open('articles', 2, function(upgradeDb) {
       if (!upgradeDb.objectStoreNames.contains('articles')) {
         console.log('Creating articles object store');
         const store = upgradeDb.createObjectStore('articles', {keyPath: 'id'});
