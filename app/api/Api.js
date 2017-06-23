@@ -1,3 +1,7 @@
+/*Perform complex queries here*/
+
+/*consider word count */
+
 var endpoint = 'https://content.guardianapis.com/';
 var key = '&api-key=a0f2219a-e62d-4c78-b0ac-f4f8717d3580';
 

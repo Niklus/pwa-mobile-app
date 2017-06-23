@@ -8,18 +8,18 @@
 	var filesToCache = [
 		'.',
 		'index.html',
+		'styles/style.css',
 		'pages/offline.html',
 		'pages/404.html',
-		'scripts/app.js',
-		'scripts/detail.js',
-		'scripts/main.js',
+		'elements/app-drawer.js',
+		'elements/detail-view.js',
+		'elements/list-view.js',
+		'elements/my-app.js',
 		'libs/idb.js',
 		"libs/purify.min.js",
-		"manifest.json",
-		"https://fonts.googleapis.com/icon?family=Material+Icons",
-		"https://fonts.googleapis.com/css?family=Roboto:300,400,500",
-		"node_modules/material-components-web/dist/material-components-web.min.css", 
-		"node_modules/material-components-web/dist/material-components-web.min.js" //Extract these last four later and put them in libs
+		"libs/webcomponents-lite.js",
+		"images/place-holder.jpg",
+		"manifest.json"
 	];
 	
 
@@ -51,12 +51,13 @@
   		Using the "cache falling to network" strategy
   	*/
   
-  self.addEventListener('fetch', function(event) {
+  self.addEventListener('fetch', event => {
     
     event.respondWith(
       
       // ignoreSearch ignores the query strings : enabling service worker to function properly
-      caches.match(event.request,{ignoreSearch: true}).then(function(response) {
+      caches.match(event.request)
+		.then( response => {
 
         if (response) {
           console.log('Found ', event.request.url, ' in cache');
@@ -64,9 +65,9 @@
         }
         
         //If no response make a network request
-        //console.log(event.request.url,  'not in cache');
+        console.log(event.request.url,  'not in cache');
         
-        return fetch(event.request).then(function(response) {
+        return fetch(event.request).then( response => {
           
           // Respond with custom 404 page if status 404
           if (response.status === 404) {
