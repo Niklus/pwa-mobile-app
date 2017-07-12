@@ -1,1 +1,2 @@
-# Simple progressive web app ! 
+# Simple PWA mobile app with custom elements
+## Under Construction

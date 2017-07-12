@@ -19,7 +19,8 @@
 		"libs/purify.min.js",
 		"libs/webcomponents-lite.js",
 		"images/place-holder.jpg",
-		"manifest.json"
+		"manifest.json",
+		"api/sections.json"
 	];
 	
 
