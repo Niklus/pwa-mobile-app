@@ -35,7 +35,7 @@ class MyAppElement extends HTMLElement {
     } else {
       this.loadElement('list-view');
       document.body.classList.remove('detail-view-active');
-      if(this.detailView)this.detailView.innerHTML = "";
+      if(this.detailView) this.detailView.innerHTML = "";
       this.listView = this.querySelector('list-view');
       this.listView.setAttribute('section', window.location.hash.slice(2) || 'world');
     }
