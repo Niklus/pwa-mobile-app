@@ -22,7 +22,7 @@ class ListViewElement extends HTMLElement {
 
     const range = IDBKeyRange.only(section);
 
-    dbPromise.then(function(db) {
+    dbPromise.then( db => {
       const tx = db.transaction('articles', 'readonly');
       const store = tx.objectStore('articles');
       const index = store.index('section');
@@ -76,8 +76,10 @@ class ListViewElement extends HTMLElement {
     this.innerHTML = items.reduce((a, item) => a + `
     <a href="#/detail/${item.id}">
       <img src="${item.fields.thumbnail || '/images/place-holder.jpg' }" alt="article thumbnail">
-      <div>${item.webTitle}</div>
-      <div>${item.webPublicationDate.slice(0,10)}</div>
+      <div>
+        <p>${item.webTitle}</p>
+        <p>${item.webPublicationDate.slice(0,10)}</p>
+      </div>     
     </a>`, '');
 
     if(fromDb){
@@ -100,7 +102,7 @@ class ListViewElement extends HTMLElement {
       return tx.complete;
     }).then(() => {
       console.log('articles downloaded'); 
-      this.showToast('articles downloaded');
+      this.showToast('Articles Downloaded');
     });
   }
 

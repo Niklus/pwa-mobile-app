@@ -35,6 +35,7 @@ class MyAppElement extends HTMLElement {
     } else {
       this.loadElement('list-view');
       document.body.classList.remove('detail-view-active');
+      if(this.detailView)this.detailView.innerHTML = "";
       this.listView = this.querySelector('list-view');
       this.listView.setAttribute('section', window.location.hash.slice(2) || 'world');
     }
@@ -58,7 +59,7 @@ class MyAppElement extends HTMLElement {
     let el = this.querySelector("#snackbar")
     el.innerHTML = msg;
     el.className = "show";
-    setTimeout(() => el.className = el.className.replace("show", ""), 2000);
+    setTimeout(() => el.className = el.className.replace("show", ""), 3000);
   }
 
   createDb() {

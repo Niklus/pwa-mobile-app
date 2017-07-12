@@ -14,10 +14,6 @@ header {
   text-align: center;
 }
 
-/*new*/
-.nav-up {
-  top: -30px; /*same as header height*/
-}
 
 img {
   width: 100%;
@@ -190,3 +186,5 @@ detail-view a {
   pointer-events: none;
   color: black;
 }
+
+

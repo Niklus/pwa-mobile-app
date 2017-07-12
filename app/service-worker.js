@@ -121,7 +121,5 @@
 	  	deleting caches before the new service worker has taken over the page. 
 		We create an array of caches that are currently in use and delete all other caches.
 	*/
-	
-
 })();
 

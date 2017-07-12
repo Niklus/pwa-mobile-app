@@ -65,7 +65,6 @@ class DetailViewElement extends HTMLElement {
   
     if (element.className === 'close-btn') {
       window.history.back();
-      this.innerHTML = '';
     }
   }
 }

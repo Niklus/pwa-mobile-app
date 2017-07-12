@@ -12,7 +12,7 @@ export default {
     var url = endpoint+section+"?&show-fields=all"+key;
 
     return fetch(url)
-    .then(function (res) {
+    .then( res => {
       var results = res.response.results;
       return results
     });
