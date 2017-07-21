@@ -6,5 +6,5 @@ Still under construction but here is a [Link](https://pwa-mobile-app-c6f33.fireb
 
 ## Todos
 * Make the list responsive. Only looks good on mobile
-* Give the user a chance to update the news list and bookmark articles
+* Give the user a way of updating the news list and bookmarking articles
 * Delete outdated articles from the database
