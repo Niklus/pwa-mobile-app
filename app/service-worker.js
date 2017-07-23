@@ -18,15 +18,19 @@
 		'libs/idb.js',
 		"libs/purify.min.js",
 		"libs/webcomponents-lite.js",
+		"libs/material-components-web.min.js",
+		"libs/material-components-web.min.css",
 		"images/place-holder.jpg",
 		"manifest.json",
-		"api/sections.json"
+		"api/sections.json",
+		"https://fonts.googleapis.com/icon?family=Material+Icons",
+		"https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
 	];
 	
 
   
   	// Define the cahce name
-	var staticCacheName = 'pages-cache-v2';
+	var staticCacheName = 'pages-cache-v3';
   
   	// Install service worker and cache the static assets
 	self.addEventListener('install', function(event) {
@@ -41,22 +45,19 @@
 	      return cache.addAll(filesToCache); 
 	    })
 	  );
-  	/* 
-	We wrap this in event.waitUntil to extend the lifetime of the event 
-	until all of the files are added to the cache and addAll resolves successfully.
-	*/  
 	});
 
-  	/* 
-  		Intercept requests and serve from the cache if available
-  		Using the "cache falling to network" strategy
+
+
+  	/** 
+     *  Intercept requests and serve from the cache if available
+  	 *  Using the "cache falling to network" strategy
   	*/
   
   self.addEventListener('fetch', event => {
     
     event.respondWith(
       
-      // ignoreSearch ignores the query strings : enabling service worker to function properly
       caches.match(event.request)
 		.then( response => {
 

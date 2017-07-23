@@ -6,6 +6,10 @@ class ListViewElement extends HTMLElement {
     return ['section'];
   }
 
+  connectedCallback(){
+    this.classList.add(...ListViewElement.CLASSES);
+  }
+
   attributeChangedCallback(attr, oldValue, newValue) {
     
     if (attr !== 'section' || !newValue) {
@@ -74,13 +78,17 @@ class ListViewElement extends HTMLElement {
     });
 
     this.innerHTML = items.reduce((a, item) => a + `
-    <a href="#/detail/${item.id}">
-      <img src="${item.fields.thumbnail || '/images/place-holder.jpg' }" alt="article thumbnail">
-      <div>
-        <p>${item.webTitle}</p>
-        <p>${item.webPublicationDate.slice(0,10)}</p>
-      </div>     
-    </a>`, '');
+    <div class="card mdc-layout-grid__cell">
+      <a href="#/detail/${item.id}">
+        <div class="mdc-card">
+          <section class="mdc-card__media card__16-9-media" style="background-image:url('${item.fields.thumbnail || '/images/place-holder.jpg' }')"></section>
+          <section class="mdc-card__primary">
+            <h1 class="mdc-card__title mdc-card__title--medium">${item.webTitle}</h1>
+            <h2 class="mdc-card__subtitle">${item.webPublicationDate.slice(0,10)}</h2>
+          </section>   
+        </div>
+      </a>
+    </div>`, '');
 
     if(fromDb){
       console.log('from db');     
@@ -124,5 +132,8 @@ class ListViewElement extends HTMLElement {
       <p class="error">No network connection</p>`;
   }
 }
+
+// TOOP LEVEL STYLE CLASSES
+ListViewElement.CLASSES = ['mdc-layout-grid', 'mdc-toolbar-fixed-adjust'];
 
 window.customElements.define('list-view', ListViewElement);

@@ -32,12 +32,14 @@ class MyAppElement extends HTMLElement {
       document.body.classList.add('detail-view-active');
       this.detailView = this.querySelector('detail-view');
       this.detailView.setAttribute('id', window.location.hash.slice(9));
+      
     } else {
       this.loadElement('list-view');
       document.body.classList.remove('detail-view-active');
       if(this.detailView) this.detailView.innerHTML = "";
       this.listView = this.querySelector('list-view');
       this.listView.setAttribute('section', window.location.hash.slice(2) || 'world');
+     
     }
   }
 

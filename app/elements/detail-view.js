@@ -28,11 +28,14 @@ class DetailViewElement extends HTMLElement {
     this.scrollTop = 0;
 
     this.innerHTML = `
-      <img src="${item.fields.thumbnail || '/images/place-holder.jpg'}" alt="article image">
-      <div class="close-btn">&times;</div>
       <div>
-        <h1>${item.webTitle}</h1>
-        ${this.sanitize(item.fields.body)}
+        <div class="hero">
+          <img src="${item.fields.thumbnail || '/images/place-holder.jpg'}" alt="article image">
+          <h1>${item.webTitle}</h1>
+        </div>
+        <div class="body">
+          ${this.sanitize(item.fields.body)}
+        </div>
       </div>`;
 
     this.ShowControls();
@@ -59,14 +62,14 @@ class DetailViewElement extends HTMLElement {
     <p class="error">No network connection</p>`;
   }
 
-  closeDetailPage(event) {
+  /*closeDetailPage(event) {
     
     let element = event.target;
   
     if (element.className === 'close-btn') {
       window.history.back();
     }
-  }
+  }*/
 }
 
 window.customElements.define('detail-view', DetailViewElement);
