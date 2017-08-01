@@ -20,10 +20,11 @@
 		"libs/webcomponents-lite.js",
 		"libs/material-components-web.min.js",
 		"libs/material-components-web.min.css",
+		"libs/icon.woff2",
+		"libs/icon.css",
 		"images/place-holder.jpg",
 		"manifest.json",
 		"api/sections.json",
-		"https://fonts.googleapis.com/icon?family=Material+Icons",
 		"https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
 	];
 	

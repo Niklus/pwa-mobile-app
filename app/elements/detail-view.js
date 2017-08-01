@@ -5,11 +5,12 @@ class DetailViewElement extends HTMLElement {
   }
 
   attributeChangedCallback(attr, oldValue, newValue) {
+    
     if (attr !== 'id' || !newValue) {
       return;
     }
+    
     this.getDetail(newValue);
-    this.addEventListener('click', this.closeDetailPage);
   }
 
   getDetail(id){

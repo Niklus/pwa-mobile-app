@@ -1,19 +1,23 @@
 class MyAppElement extends HTMLElement {
 
   constructor() {
+    
     super();
+    
     this.loadedElements = {};
-    this.createDb(); 
+    this.createDb();
+
+    // Event Listeners 
     window.addEventListener('online', () => this.showToast("ONLINE"));
     window.addEventListener('offline',() => this.showToast("OFFLINE"));
+    window.addEventListener('hashchange',() => this.updateVisiblePage());  
   }
 
   connectedCallback() {
     
     this.updateVisiblePage();
     this.loadElement('app-drawer');  
-    window.addEventListener('hashchange', this.updateVisiblePage.bind(this));  
-
+    
     // Check for conection
     if (window.navigator.onLine) {
       this.showToast("ONLINE");

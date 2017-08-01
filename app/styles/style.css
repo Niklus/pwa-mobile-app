@@ -30,6 +30,7 @@ html, body {
 
 detail-view div {
   padding: 12px;
+  margin-bottom: 100px;
 }
 
 a {
