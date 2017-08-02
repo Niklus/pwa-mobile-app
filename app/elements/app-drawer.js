@@ -72,7 +72,7 @@ class AppDrawer extends HTMLElement {
         link.innerHTML = `${obj.webTitle}`;
         link.classList.add('mdc-list-item');
         link.addEventListener('click', () => {
-          this.navMenu.MDCTemporaryDrawer.open = false;
+          //this.navMenu.MDCTemporaryDrawer.open = false;
         });       
         this.nav.append(link);
         this.sections[obj.id] = obj.webTitle;  

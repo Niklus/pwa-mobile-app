@@ -32,7 +32,7 @@
 
   
   	// Define the cahce name
-	var staticCacheName = 'pages-cache-v7';
+	var staticCacheName = 'pages-cache-v8';
   
   	// Install service worker and cache the static assets
 	self.addEventListener('install', function(event) {
