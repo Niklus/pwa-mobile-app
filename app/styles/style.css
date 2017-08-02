@@ -13,9 +13,6 @@ html, body {
   color: white;
 }
 
-#nav-icon{
-  color: white;
-}
 
 /*list-view{
   --mdc-layout-grid-gutter: 8px;
@@ -30,7 +27,7 @@ html, body {
 
 detail-view div {
   padding: 12px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 a {
@@ -143,8 +140,5 @@ detail-view img {
   height: auto;
 }
 
-.back-icon{
-  color: white;
-}
 
 

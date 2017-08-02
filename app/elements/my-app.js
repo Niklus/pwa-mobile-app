@@ -1,3 +1,5 @@
+const dbPromise = idb.open('articles');
+
 class MyAppElement extends HTMLElement {
 
   constructor() {
@@ -10,13 +12,10 @@ class MyAppElement extends HTMLElement {
     // Event Listeners 
     window.addEventListener('online', () => this.showToast("ONLINE"));
     window.addEventListener('offline',() => this.showToast("OFFLINE"));
-    window.addEventListener('hashchange',() => this.updateVisiblePage());  
+    window.addEventListener('hashchange',() => this.updateVisiblePage()); 
   }
 
   connectedCallback() {
-    
-    this.updateVisiblePage();
-    this.loadElement('app-drawer');  
     
     // Check for conection
     if (window.navigator.onLine) {
@@ -24,6 +23,12 @@ class MyAppElement extends HTMLElement {
     } else {
       this.showToast("OFFLINE");
     }
+    
+    this.detailView = this.querySelector('detail-view');
+    this.listView = this.querySelector('list-view');
+    this.appDrawer = this.querySelector('app-drawer');
+
+    this.updateVisiblePage();
   }
 
   /**
@@ -34,16 +39,15 @@ class MyAppElement extends HTMLElement {
     if (window.location.hash.slice(0,8) === "#/detail") {
       this.loadElement('detail-view');
       document.body.classList.add('detail-view-active');
-      this.detailView = this.querySelector('detail-view');
       this.detailView.setAttribute('id', window.location.hash.slice(9));
-      
     } else {
+       
+      const section =  window.location.hash.slice(2) || 'world';
       this.loadElement('list-view');
       document.body.classList.remove('detail-view-active');
       if(this.detailView) this.detailView.innerHTML = "";
-      this.listView = this.querySelector('list-view');
-      this.listView.setAttribute('section', window.location.hash.slice(2) || 'world');
-     
+      this.listView.setAttribute('section', section);
+      this.appDrawer.setAttribute('section', section);
     }
   }
 

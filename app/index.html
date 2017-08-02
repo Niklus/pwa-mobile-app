@@ -40,7 +40,7 @@
   -->
 
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-  
+ 
   <script src="libs/idb.js"></script>
   <script src="libs/purify.min.js"></script>
   <script src="libs/webcomponents-lite.js"></script>
@@ -50,20 +50,24 @@
   <link rel="stylesheet" href="libs/icon.css">
   <link rel="stylesheet" href="libs/material-components-web.min.css">
   <link rel="stylesheet" href="styles/style.css">
+
+
+  <link rel="import" href="elements/app-drawer.html">
 </head>
 
 <body class="mdc-typography">
-  
+
   <my-app>
-    <app-drawer></app-drawer>
-    <section id="main">
-      <list-view></list-view>
-      <detail-view></detail-view>
-      <section id="snackbar"></section>
-    </section>
+    <app-drawer>
+      <section id="main">
+        <list-view></list-view>
+        <detail-view></detail-view>
+        <section id="snackbar"></section>
+      </section>
+    </app-drawer>
   </my-app>
   
-  <!--<script>
+  <script>
     if ('serviceWorker' in window.navigator) {
       window.addEventListener('load', () => {
         window.navigator.serviceWorker.register('service-worker.js')
@@ -79,6 +83,6 @@
 
     ga('create', 'UA-102517725-1', 'auto');
     ga('send', 'pageview');
-  </script>-->
+  </script>
 </body>
 </html>

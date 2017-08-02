@@ -31,7 +31,7 @@
 
   
   	// Define the cahce name
-	var staticCacheName = 'pages-cache-v3';
+	var staticCacheName = 'pages-cache-v4';
   
   	// Install service worker and cache the static assets
 	self.addEventListener('install', function(event) {

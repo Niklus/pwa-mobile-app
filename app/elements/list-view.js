@@ -1,5 +1,3 @@
-const dbPromise = idb.open('articles');
-
 class ListViewElement extends HTMLElement {
 
   static get observedAttributes() {
@@ -112,6 +110,17 @@ class ListViewElement extends HTMLElement {
       console.log('articles downloaded'); 
       this.showToast('Articles Downloaded');
     });
+  }
+  
+  updateArticles(){
+    
+    const timeLapse = Date.now() + 1800000 //+30 min
+    console.log(timeLapse);
+
+    alert('comming soon :)')
+
+    //this.getFromNetwork(this.section);
+    //this.showToast('Articles Updated')
   }
 
   showToast(msg) {
