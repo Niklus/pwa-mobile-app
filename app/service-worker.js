@@ -11,7 +11,7 @@
 		'styles/style.css',
 		'pages/offline.html',
 		'pages/404.html',
-		'elements/app-drawer.js',
+		'elements/app-drawer.html',
 		'elements/detail-view.js',
 		'elements/list-view.js',
 		'elements/my-app.js',
@@ -31,7 +31,7 @@
 
   
   	// Define the cahce name
-	var staticCacheName = 'pages-cache-v4';
+	var staticCacheName = 'pages-cache-v5';
   
   	// Install service worker and cache the static assets
 	self.addEventListener('install', function(event) {

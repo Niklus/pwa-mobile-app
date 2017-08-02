@@ -108,7 +108,7 @@ class ListViewElement extends HTMLElement {
       return tx.complete;
     }).then(() => {
       console.log('articles downloaded'); 
-      this.showToast('Articles Downloaded');
+      //this.showToast('Articles Downloaded');
     });
   }
   
