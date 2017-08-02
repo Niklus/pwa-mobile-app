@@ -40,10 +40,12 @@
   -->
 
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
- 
+  
+  <script src="libs/webcomponents-lite.js"></script>
+
   <script src="libs/idb.js"></script>
   <script src="libs/purify.min.js"></script>
-  <script src="libs/webcomponents-lite.js"></script>
+  
   <script src="libs/material-components-web.min.js"></script>
   <script src="elements/my-app.js" defer></script>
   
@@ -51,20 +53,17 @@
   <link rel="stylesheet" href="libs/material-components-web.min.css">
   <link rel="stylesheet" href="styles/style.css">
 
-
-  <link rel="import" href="elements/app-drawer.html">
 </head>
 
 <body class="mdc-typography">
 
   <my-app>
-    <app-drawer>
-      <section id="main">
-        <list-view></list-view>
-        <detail-view></detail-view>
-        <section id="snackbar"></section>
-      </section>
-    </app-drawer>
+    <app-drawer></app-drawer>
+    <section id="main">
+      <list-view></list-view>
+      <detail-view></detail-view>
+      <section id="snackbar"></section>
+    </section>
   </my-app>
   
   <script>

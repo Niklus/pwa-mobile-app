@@ -1,80 +1,13 @@
-
-<!-- Define a new element in HTML -->
-<template id="app-drawer">
-  
-  <style>
-      #nav-icon{
-        color: white;
-      }
-
-      #update{
-        color: white;
-      }
-      
-      #back-icon{
-        color: white;
-      }
-  </style>
-    
-    <header class="mdc-toolbar mdc-toolbar--fixed mdc-theme--text-primary-on-background">
-      <div class="mdc-toolbar__row" >
-        <section class="mdc-toolbar__section">
-            <i id="nav-icon" class="material-icons mdc-ripple-surface"
-             aria-label="Click to show the navigation menu"
-             aria-controls="nav-menu"
-             data-mdc-auto-init="MDCRipple"
-             data-mdc-ripple-is-unbounded>menu</i>
-             <i id="back-icon" class="back-icon material-icons mdc-ripple-surface"
-             aria-label="go back"
-             aria-controls="back-btn"
-             data-mdc-auto-init="MDCRipple"
-             data-mdc-ripple-is-unbounded>arrow_back</i>
-          <span id="title" class="mdc-toolbar__section mdc-toolbar__title"></span>
-            <i id="update" class="material-icons mdc-ripple-surface"
-             aria-label="update"
-             aria-controls="update-btn"
-             data-mdc-auto-init="MDCRipple"
-             data-mdc-ripple-is-unbounded>update</i>
-        </section>
-      </div>
-    </header>
-
-    <aside id="nav-menu" class="mdc-temporary-drawer" data-mdc-auto-init="MDCTemporaryDrawer">
-      <nav class="mdc-temporary-drawer__drawer">
-        <header class="mdc-temporary-drawer__header">
-          <div class="mdc-temporary-drawer__header-content mdc-theme--primary-bg mdc-theme--text-primary-on-primary">
-            NEWS 
-          </div>
-        </header>
-        <nav id="mySidenav" class="mdc-temporary-drawer__content mdc-list">
-        </nav>
-      </nav>
-    </aside>
-</template>
-
-<script>
-
 class AppDrawer extends HTMLElement {
   
   constructor() {
    
-	super();
-    
-    // Append Template
-    const doc = document.currentScript.ownerDocument;
-    const temp = doc.querySelector('#app-drawer');
-    const instance = temp.content.cloneNode(true);
-    this.appendChild(instance); 
-
-    // use shadow dom for local dom & scoped css 
-    // let shadowRoot = this.attachShadow({mode: 'open'}); 
-    // ...create instance
-    // shadowRoot.appendChild(instance);
+    super();
 
     window.addEventListener('hashchange', () => {
         this.toggleDisplay();
     });
-	
+  
     this.sections = {};
   } 
 
@@ -96,6 +29,8 @@ class AppDrawer extends HTMLElement {
   }
 
   connectedCallback() {
+
+    this.innerHTML = this.template;
     
     mdc.autoInit();
     
@@ -145,6 +80,44 @@ class AppDrawer extends HTMLElement {
     }).then(() => this.updateSection());
   }
 
+  get template(){
+    return `
+    <header class="mdc-toolbar mdc-toolbar--fixed mdc-theme--text-primary-on-background">
+      <div class="mdc-toolbar__row" >
+        <section class="mdc-toolbar__section">
+            <i id="nav-icon" class="material-icons mdc-ripple-surface"
+             aria-label="Click to show the navigation menu"
+             aria-controls="nav-menu"
+             data-mdc-auto-init="MDCRipple"
+             data-mdc-ripple-is-unbounded>menu</i>
+             <i id="back-icon" class="back-icon material-icons mdc-ripple-surface"
+             aria-label="go back"
+             aria-controls="back-btn"
+             data-mdc-auto-init="MDCRipple"
+             data-mdc-ripple-is-unbounded>arrow_back</i>
+          <span id="title" class="mdc-toolbar__section mdc-toolbar__title"></span>
+            <i id="update" class="material-icons mdc-ripple-surface"
+             aria-label="update"
+             aria-controls="update-btn"
+             data-mdc-auto-init="MDCRipple"
+             data-mdc-ripple-is-unbounded>update</i>
+        </section>
+      </div>
+    </header>
+
+    <aside id="nav-menu" class="mdc-temporary-drawer" data-mdc-auto-init="MDCTemporaryDrawer">
+      <nav class="mdc-temporary-drawer__drawer">
+        <header class="mdc-temporary-drawer__header">
+          <div class="mdc-temporary-drawer__header-content mdc-theme--primary-bg mdc-theme--text-primary-on-primary">
+            NEWS 
+          </div>
+        </header>
+        <nav id="mySidenav" class="mdc-temporary-drawer__content mdc-list">
+        </nav>
+      </nav>
+    </aside>`;
+  }
+
   updateSection(){
     const title = this.sections[this.section];
     if(title) {
@@ -165,9 +138,9 @@ class AppDrawer extends HTMLElement {
   }
 
   updateArticles(){
-    this.querySelector('list-view').updateArticles();
+    alert('coming soon');
+    //this.querySelector('list-view').updateArticles();
   }
 }
 
-customElements.define('app-drawer', AppDrawer);
-</script>
+window.customElements.define('app-drawer', AppDrawer);

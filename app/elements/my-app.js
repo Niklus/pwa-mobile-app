@@ -26,6 +26,8 @@ class MyAppElement extends HTMLElement {
     this.listView = this.querySelector('list-view');
     this.appDrawer = this.querySelector('app-drawer');
 
+    this.loadElement('app-drawer');
+
     this.updateVisiblePage();
   }
 

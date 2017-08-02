@@ -13,6 +13,17 @@ html, body {
   color: white;
 }
 
+#nav-icon{
+  color: white;
+}
+
+#update{
+  color: white;
+}
+
+#back-icon{
+  color: white;
+}
 
 /*list-view{
   --mdc-layout-grid-gutter: 8px;
