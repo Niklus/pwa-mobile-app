@@ -1,3 +1,5 @@
+const dbPromise = idb.open('articles');
+
 class ListViewElement extends HTMLElement {
 
   static get observedAttributes() {

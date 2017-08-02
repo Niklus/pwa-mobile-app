@@ -14,7 +14,7 @@ class DetailViewElement extends HTMLElement {
   }
 
   getDetail(id){
-    dbPromise.then( db => {
+    idb.open('articles').then( db => {
       const tx = db.transaction('articles', 'readonly');
       const store = tx.objectStore('articles');
       return store.get(id);

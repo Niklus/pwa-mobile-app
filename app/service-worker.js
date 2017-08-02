@@ -5,6 +5,7 @@
   // cache agressively !
   // init the db on activate: use the switch method
 
+	
 	var filesToCache = [
 		'.',
 		'index.html',
@@ -31,7 +32,7 @@
 
   
   	// Define the cahce name
-	var staticCacheName = 'pages-cache-v5';
+	var staticCacheName = 'pages-cache-v6';
   
   	// Install service worker and cache the static assets
 	self.addEventListener('install', function(event) {

@@ -1,5 +1,3 @@
-const dbPromise = idb.open('articles');
-
 class MyAppElement extends HTMLElement {
 
   constructor() {
@@ -81,7 +79,7 @@ class MyAppElement extends HTMLElement {
     
     // Use the switch for better versioning
     
-    return idb.open('articles', 2, upgradeDb => {
+    return idb.open('articles', 1, upgradeDb => {
       if (!upgradeDb.objectStoreNames.contains('articles')) {
         console.log('Creating articles object store');
         const store = upgradeDb.createObjectStore('articles', {keyPath: 'id'});
