@@ -131,15 +131,15 @@ class AppDrawer extends HTMLElement {
       this.navBtn.style = 'display:none';
       this.updateBtn.style = 'display:none';
     } else {
-       this.backBtn.style = 'display:none';
-       this.navBtn.style = 'display:revert';
-       this.updateBtn.style = 'display:revert';
+      this.backBtn.style = 'display:none';
+      this.navBtn.style = 'display:revert';
+      this.updateBtn.style = 'display:revert';
     }
   }
 
   updateArticles(){
-    alert('coming soon');
-    //this.querySelector('list-view').updateArticles();
+   const listView = this.parentElement.querySelector('list-view');
+   listView.updateArticles();
   }
 }
 

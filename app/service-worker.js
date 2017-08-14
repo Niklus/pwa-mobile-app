@@ -2,10 +2,7 @@
   'use strict';
 
   // Define the files to cache: Application Shell
-  // cache agressively !
-  // init the db on activate: use the switch method
-
-	
+ 	
 	var filesToCache = [
 		'.',
 		'index.html',
@@ -32,7 +29,7 @@
 
   
   	// Define the cahce name
-	var staticCacheName = 'pages-cache-v8';
+	var staticCacheName = 'pages-cache-v9';
   
   	// Install service worker and cache the static assets
 	self.addEventListener('install', function(event) {
@@ -48,7 +45,6 @@
 	    })
 	  );
 	});
-
 
 
   	/** 
@@ -81,9 +77,6 @@
           return response;
         });
       }).catch(function(error) {
-
-      	// Respond with a custom offline page if network fails
-      	// If fetch cannot reach the network, it throws an error and sends it to a .catch
         console.log('Error, ', error);
         return caches.match('pages/offline.html');
       })
@@ -97,7 +90,6 @@
     we can delete the old cache
    */
   
-
   self.addEventListener('activate', function(event) {
 	  
 	  console.log('Activating new service worker...');
@@ -105,8 +97,6 @@
 	  var cacheWhitelist = [staticCacheName];
 
 	  event.waitUntil(
-
-        //createDB() good place to create db => read: 'https://developers.google.com/web/ilt/pwa/live-data-in-the-service-worker'
 
 	    caches.keys().then(function(cacheNames) {
 	      return Promise.all(
@@ -119,11 +109,5 @@
 	    })
 	  );
 	});
-
-	/*
-		We delete old caches in the activate event to make sure that we aren't 
-	  	deleting caches before the new service worker has taken over the page. 
-		We create an array of caches that are currently in use and delete all other caches.
-	*/
 })();
 

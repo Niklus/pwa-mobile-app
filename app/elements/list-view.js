@@ -111,18 +111,27 @@ class ListViewElement extends HTMLElement {
     }).then(() => {
       console.log('articles downloaded'); 
       this.showToast('Articles Downloaded');
+      this.updateTime();
     });
+  }
+
+  updateTime(){
+    localStorage[this.section] = Date.now();
   }
   
   updateArticles(){
-    
-    const timeLapse = Date.now() + 1800000 //+30 min
-    console.log(timeLapse);
 
-    alert('comming soon :)')
-
-    //this.getFromNetwork(this.section);
-    //this.showToast('Articles Updated')
+    // Allow article update after an hour 
+    if(!localStorage[this.section]){
+      this.getFromNetwork(this.section)
+      this.showToast('Updating Articles')
+    }else if((Date.now() - localStorage[this.section]) > 3600000)  {
+      this.getFromNetwork(this.section)
+      this.showToast('Updating Articles')
+    }else{
+      this.showToast('Articles Up To Date')
+      console.log(Date.now() - localStorage[this.section])
+    }
   }
 
   showToast(msg) {
