@@ -18,18 +18,18 @@
 		"libs/webcomponents-lite.js",
 		"libs/material-components-web.min.js",
 		"libs/material-components-web.min.css",
-		"libs/icon.woff2",
 		"libs/icon.css",
 		"images/place-holder.jpg",
 		"manifest.json",
 		"api/sections.json",
-		"https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+		"https://fonts.googleapis.com/css?family=Roboto:300,400,500,700",
+		"https://fonts.gstatic.com/s/materialicons/v29/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2"
 	];
 	
 
   
   	// Define the cahce name
-	var staticCacheName = 'pages-cache-v9';
+	var staticCacheName = 'pages-cache-v1';
   
   	// Install service worker and cache the static assets
 	self.addEventListener('install', function(event) {

@@ -119,19 +119,22 @@ class ListViewElement extends HTMLElement {
     localStorage[this.section] = Date.now();
   }
   
+  // Allow article update after an hour if User is online
   updateArticles(){
-
-    // Allow article update after an hour 
-    if(!localStorage[this.section]){
-      this.getFromNetwork(this.section)
-      this.showToast('Updating Articles')
-    }else if((Date.now() - localStorage[this.section]) > 3600000)  {
-      this.getFromNetwork(this.section)
-      this.showToast('Updating Articles')
+    if( window.navigator.onLine){
+      if(!localStorage[this.section]){
+        this.getFromNetwork(this.section)
+        this.showToast('Updating Articles')
+      }else if((Date.now() - localStorage[this.section]) > 3600000)  {
+        this.getFromNetwork(this.section)
+        this.showToast('Updating Articles');
+      }else{
+        this.showToast('Articles Up To Date');
+      }
     }else{
-      this.showToast('Articles Up To Date')
-      console.log(Date.now() - localStorage[this.section])
+      this.showToast('OFFLINE');
     }
+    
   }
 
   showToast(msg) {
