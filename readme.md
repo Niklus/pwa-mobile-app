@@ -1,7 +1,7 @@
 # Progressive Web App
 
 [LIVE LINK](https://pwa-mobile-app-c6f33.firebaseapp.com)
-Simple PWA mobile app built with [STENCIL](https://stenciljs.com/).
+Simple PWA mobile app built with [stencil](https://stenciljs.com/).
 
 ## Running the App
 Run:
