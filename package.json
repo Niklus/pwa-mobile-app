@@ -1,0 +1,27 @@
+{
+  "name": "News",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Progressive Web App",
+  "scripts": {
+    "build": "stencil build && gulp && workbox-cli generate:sw",
+    "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
+    "serve": "stencil-dev-server",
+    "start": "npm run dev",
+    "deploy": "firebase deploy"
+  },
+  "dependencies": {
+    "@stencil/core": "next",
+    "@stencil/router": "0.0.4",
+    "dexie": "^1.5.1",
+    "dompurify": "^1.0.2",
+    "material-components-web": "^0.19.0",
+    "material-design-icons": "^3.0.1"
+  },
+  "devDependencies": {
+    "@stencil/dev-server": "latest",
+    "@stencil/utils": "latest",
+    "gulp": "^3.9.1"
+  },
+  "author": "Nicholas Otieno"
+}
