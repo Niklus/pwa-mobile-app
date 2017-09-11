@@ -1,6 +1,5 @@
 import { Component, Element} from '@stencil/core';
 import { MDCSnackbar } from '@material/snackbar';
-import { MDCToolbar } from '@material/toolbar';
 import Dexie from 'dexie';
 import sections from './sections';
 
@@ -31,9 +30,6 @@ export class AppMain {
     // Event Listeners 
     window.addEventListener('online', () => snackBar.show({ message: 'ONLINE' }));
     window.addEventListener('offline',() => snackBar.show({ message: 'OFFLINE'}));
-    
-    var toolbar = new MDCToolbar(document.querySelector('.mdc-toolbar'));
-    toolbar.fixedAdjustElement = this.element.querySelector('.mdc-toolbar-fixed-adjust');
   }
 
 
@@ -48,6 +44,7 @@ export class AppMain {
         <div class="mdc-toolbar-fixed-adjust"> 
           { /* App Router*/ }
           <stencil-router id="router">
+            
             <stencil-route
               url="/"
               component="app-list"

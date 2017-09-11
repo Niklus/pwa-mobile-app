@@ -37,11 +37,6 @@ export class AppNav {
     this.appDrawer.open = bool;
   }
 
-  getSections(json){
-    return fetch(`api/${json}`)
-    .then(res => res.json())
-  }
-
   // Update title with sectionId
   updateTitle(){
      
