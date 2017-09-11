@@ -6,17 +6,17 @@ Simple PWA mobile app built with [stencil](https://stenciljs.com/).
 ## Running the App
 Run:
 ```bash
-npm install
-npm start
+yarn
+yarn start
 ```
 To view the build, start an HTTP server inside of the `/www` directory.
 To watch for file changes during develop, run:
 ```bash
-npm run dev
+yarn start
 ```
 To build the app for production, run:
 ```bash
-npm run build
+yarn build
 ```
 For the build to create a service-worker in the dist folder you need to install the workbox cli
 ```bash
