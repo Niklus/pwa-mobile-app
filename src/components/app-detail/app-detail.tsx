@@ -27,7 +27,7 @@ export class AppDetail {
   }
   
   // Get Item by id form database
-  getById(id = 'world'){
+  getById(id){
     this.db.transaction("r", this.db.articles, () => {
       this.db.articles.get(id).then (item => this.article = item)
     }).catch(function(err) {
