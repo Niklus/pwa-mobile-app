@@ -30,6 +30,14 @@
   <!-- Tile for Win8 -->
   <meta name="msapplication-TileColor" content="#3372DF">
   <meta name="msapplication-TileImage" content="images/touch/icon-192x192.png">
+  
+  <!--Temporary Lighthouse Audit Fix: "Failures: Manifest start_url is not cached by a Service Worker" -->
+  <script>  
+    var re = /index\.html/g
+    if (re.test(window.location)) {
+      window.location = '/'
+    }
+  </script>
 
   <style>
     /* Global Styles*/
@@ -41,6 +49,7 @@
       box-sizing: border-box;
     }
   </style>
+
   <script src="build/app.js"></script>
 </head>
 <body class="mdc-typography">
