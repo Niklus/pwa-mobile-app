@@ -15,8 +15,6 @@ export class AppNav {
   list:Array<object> = sections;
 
   appDrawer: {open: boolean};
- 
-  @Prop() section: string;
 
   componentDidLoad(){
     
