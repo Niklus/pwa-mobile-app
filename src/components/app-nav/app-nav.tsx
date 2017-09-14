@@ -1,6 +1,7 @@
 import { Component, Element, Prop} from '@stencil/core';
 import { MDCTemporaryDrawer } from '@material/drawer';
 import { MDCSimpleMenu } from '@material/menu';
+import sections from './sections'
 
 @Component({
   tag: 'app-nav',
@@ -11,7 +12,7 @@ export class AppNav {
 
   @Element() element: HTMLElement;
 
-  @Prop () list:Array<object>;
+  list:Array<object> = sections;
 
   appDrawer: {open: boolean};
  

@@ -1,7 +1,6 @@
 import { Component, Element} from '@stencil/core';
 import { MDCSnackbar } from '@material/snackbar';
 import Dexie from 'dexie';
-import sections from './sections';
 
 @Component({
   tag: 'app-main',
@@ -39,7 +38,7 @@ export class AppMain {
       <div id="app-main">
       
         { /* App Navigation*/ }
-        <app-nav list={sections}/>
+        <app-nav></app-nav>
 
         <div class="mdc-toolbar-fixed-adjust"> 
           { /* App Router*/ }
