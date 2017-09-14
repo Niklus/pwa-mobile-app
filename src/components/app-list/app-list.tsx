@@ -166,9 +166,7 @@ export class AppList {
     const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
     
     const dataObj = {
-      message: msg,
-      actionText: 'OK',
-      actionHandler: () => {}
+      message: msg
     };
 
     snackbar.show(dataObj);

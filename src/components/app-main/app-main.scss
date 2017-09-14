@@ -1,13 +1,19 @@
 
-/*imports*/
+/*lib imports*/
 @import '../../lib/Roboto+Mono';
 @import '../../lib/Roboto:300,400,500';
-@import '../../../node_modules/material-components-web/dist/material-components-web';
 
-/*CHECK if you reduce css file by specifying only the compoenets used 
-as shown below
-@import '../../../node_modules/@material/card/dist/mdc.card';
+/*mdc imports*/
+@import '../../../node_modules/@material/typography/dist/mdc.typography';
+@import '../../../node_modules/@material/snackbar/dist/mdc.snackbar';
 @import '../../../node_modules/@material/button/dist/mdc.button';
+@import '../../../node_modules/@material/toolbar/dist/mdc.toolbar';
+@import '../../../node_modules/@material/menu/dist/mdc.menu';
 @import '../../../node_modules/@material/drawer/dist/mdc.drawer';
 @import '../../../node_modules/@material/list/dist/mdc.list';
-@import '../../../node_modules/@material/toolbar/dist/mdc.toolbar';*/
+@import '../../../node_modules/@material/theme/dist/mdc.theme';
+@import '../../../node_modules/@material/layout-grid/dist/mdc.layout-grid';
+@import '../../../node_modules/@material/card/dist/mdc.card';
+@import '../../../node_modules/@material/button/dist/mdc.button';
+
+
