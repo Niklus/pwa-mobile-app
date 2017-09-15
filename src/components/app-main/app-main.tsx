@@ -33,7 +33,6 @@ export class AppMain {
 
 
   render() {
-    console.log('render main')
     return (
       <div id="app-main">
       

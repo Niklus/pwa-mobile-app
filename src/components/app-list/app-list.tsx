@@ -89,10 +89,8 @@ export class AppList {
       items.forEach( item => {
         item.timeStamp = Date.now();
         this.db.articles.put(item);
-        console.log(item);
       });
     }).then(() => {
-      console.log("Transaction committed");
       this.showToast('Articles Downloaded');
     }).catch(function(err) {
       console.error(err.stack);

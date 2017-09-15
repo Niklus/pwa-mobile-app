@@ -62,8 +62,10 @@ export class AppNav {
           <a  
             class="mdc-list-item"
             href={`#${item.id}`} 
-            onClick={() => this.toggleDrawer(false)}>
-            {item.webTitle}
+            onClick={ ()=>{ 
+              this.toggleDrawer(false)
+              window.scrollTo(0, 0)} }>
+          {item.webTitle}
           </a>
           <hr class="mdc-list-divider"/>
         </div>
