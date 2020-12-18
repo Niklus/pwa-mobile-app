@@ -698,9 +698,9 @@ dexie@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/dexie/-/dexie-1.5.1.tgz#ac3ad5a0ebaf7e6e42760db58710418d4a756624"
 
-dompurify@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-1.0.2.tgz#7cf47d57614324a9723a1ba69143eeb7d3c617ac"
+dompurify@^2.0.17:
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.0.17.tgz#505ffa126a580603df4007e034bdc9b6b738668e"
 
 duplexer2@0.0.2:
   version "0.0.2"
